@@ -1,3 +1,4 @@
+/*
 package dev.obsydian.securedaccess.mapper;
 
 import dev.obsydian.securedaccess.domain.User;
@@ -8,7 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class DbMapper {
+public class UserMapper {
 
 	public User mapToUser(final UserDto userDto) {
 		return new User(userDto.getId(), userDto.getRealName(), userDto.getUserName(), userDto.getUserMail(), userDto.getPassword(), userDto.getBirthDate());
@@ -24,3 +25,4 @@ public class DbMapper {
 				.collect(Collectors.toList());
 	}
 }
+*/

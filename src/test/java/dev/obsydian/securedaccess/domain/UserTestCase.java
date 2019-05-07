@@ -8,7 +8,34 @@ import java.time.LocalDate;
 
 public class UserTestCase {
 
+
 	@Test
+	public void testAddRole(){
+		//Given When
+		Role role1 = new Role("ADMIN");
+		String role = role1.getRole();
+		System.out.println(role);
+		//Then
+		Assert.assertEquals("ADMIN", role);
+	}
+
+	@Test
+	public void testAddUser(){
+		//Given
+		Role role = new Role("ADMIN");
+		User user = new User("Mike","mike@mail.com", "password");
+		//Then
+		String username = user.getFirstName();
+		String email = user.getEmail();
+		String password = user.getPassword();
+		boolean isEnabled = user.isEnabled();
+
+		System.out.println(user);
+
+	}
+
+
+/*	@Test
 	public void testCaseNewUser() {
 
 		//Given
@@ -30,5 +57,5 @@ public class UserTestCase {
 		Assert.assertNotEquals("password2", password);
 		Assert.assertEquals(LocalDate.of(1980,1,1), birthday);
 
-	}
+	}*/
 }
