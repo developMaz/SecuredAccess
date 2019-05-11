@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header class="container">
+    <div>
+        <form data-th-href="@{/logout}">
+            <input type="submit" value="Logout" method="GET"/>
+        </form>
+    </div>
+    <div data-th-fragment="logout" class="logout" data-sec-authorize="isAuthenticated()">
+        Logged in user: <span data-security-authentication="principal.username" ></span> |
+        Roles: <span data-security-authentication="principal.authorities"></span>
+    </div>
+
+</header>
+<section class="row">
+    <div class="container">
+        <h2>Welcome</h2>
+        <h2>Hurray! You're logged successful!</h2>
+    </div>
+</section>
+
+</body>
+</html>

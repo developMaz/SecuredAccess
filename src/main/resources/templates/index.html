@@ -1,14 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <title>Welcome to my Website with secured access!</title>
+    <link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css"/>
 </head>
 <body>
-<div>
-    <h2>Welcome</h2>
-    <h2>Hurray! You're logged successful!</h2>
-</div>
+
+<section class="container">
+    <div class="row">
+        <h2>Welcome</h2>
+    </div>
+    <div class="row">
+        <p>Are You want to Log in?</p>
+        <div>
+            <button data-th-href="@{/signIn}" class="btn">Sign In</button>
+        </div>
+    </div>
+</section>
 
 
 </body>

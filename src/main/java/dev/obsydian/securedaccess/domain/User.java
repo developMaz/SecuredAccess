@@ -22,14 +22,18 @@ public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-
-	@Column(name = "id")
+	@Column(name = "user_id")
 	private int id;
 
 	@Column(name = "first_name")
 	@NotEmpty(message = "Please enter Your first name")
 	@Size(max = 50)
 	private String firstName;
+
+	@Column(name = "second_name")
+	@NotEmpty(message = "Please enter Your second name")
+	@Size(max = 50)
+	private String secondName;
 
 	@Column(name = "email")
 	@Email(message = "Please enter a valid email address")
@@ -46,30 +50,22 @@ public class User {
 	@ColumnDefault("true")
 	private boolean enabled = true;
 
-	@OneToMany(targetEntity = UserRole.class, cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles;
 
-//	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//	@JoinTable(name = "userRoles")
-//	private UserRole userRoles;
 
-	public User(String firstName, String email, String password) {
-		this.firstName = firstName;
-		this.email = email;
-		this.password = password;
-	}
-
-	@Override
-	public String toString() {
-		return "User{" +
-				"id=" + id +
-				", firstName='" + firstName + '\'' +
-				", email='" + email + '\'' +
-				", password='" + password + '\'' +
-				", enabled=" + enabled +
-				", roles=" + roles +
-				'}';
-	}
+//	@Override
+//	public String toString() {
+//		return "User{" +
+//				"id=" + id +
+//				", firstName='" + firstName + '\'' +
+//				", email='" + email + '\'' +
+//				", password='" + password + '\'' +
+//				", enabled=" + enabled +
+//				", roles=" + roles +
+//				'}';
+//	}
 
 //	@Id
 //	@GeneratedValue(strategy = GenerationType.AUTO)

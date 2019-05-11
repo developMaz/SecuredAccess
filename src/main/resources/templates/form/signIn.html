@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Secured  | Login</title>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap/css/bootstrap-reboot.min.css">
+</head>
+<body>
+
+<div class="container">
+    <div>
+        <h2>Please login to Secure Website</h2>
+    </div>
+    <div >
+        <form data-th-action="@{/signIn}" method="POST">
+            <div>Username:
+                <input type="text" name="username" />
+            </div>
+            <div>Password:
+                <input type="password" name="password" />
+            </div>
+            <div>
+                <button type="submit" value="Login">Login</button>
+            </div>
+
+            <div align="center" data-th-if="${param.error}">
+                <p style="font-size: 20; color: #FF1C19;">Email or Password invalid, please verify</p>
+            </div>
+            <div>
+                <input type="checkbox" name="remember-me" />
+                <label class="inline">Remember me for 90 days</label>
+            </div>
+        </form>
+    </div>
+
+    <div>
+        <button data-th-action="@{/signUp}" method="GET">Sign Up</button>
+    </div>
+
+
+    <div>
+        <p>*password store in database and encrypted</p>
+    </div>
+
+
+</div>
+</body>
+</html>
