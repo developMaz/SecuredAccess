@@ -3,24 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Secured Website | Sign Up</title>
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap/css/bootstrap-reboot.min.css">
 </head>
 <body>
-<div class="container">
-    <div class="row">
+<div>
+    <div>
         <div>
-            <form action="#" data-th-action="@{/registration}" data-th-object="${user}" method="post">
+            <form action="#" data-th-action="@{/signUp}" data-th-object="${user}" method="post">
                 <h2>Registration</h2>
                 <div>
-                    <input type="text" data-th-field="*{firstName}" placeholder="Your First name" class=”form-control”/>
+                    <input type="text" data-th-field="*{firstName}" placeholder="Your First name" class="form-control"/>
                     <label data-th-if="${#fields.hasErrors('firstName')}" data-th-errors="*{firstName}" class="validation-message"></label>
                 </div>
                 <div>
-                    <input type="text" data-th-field="*{secondName}" placeholder="Last Name" class=”form-control”/>
+                    <input type="text" data-th-field="*{secondName}" placeholder="Last Name" class="form-control"/>
                     <label data-th-if="${#fields.hasErrors('secondName')}" data-th-errors="*{secondName}" class="validation-message"></label>
                 </div>
                 <div>
-                    <input type="text" data-th-field="*{email}" placeholder="Email" class=”form-control”/>
+                    <input type="text" data-th-field="*{email}" placeholder="Email" class="form-control"/>
                     <label data-th-if="${#fields.hasErrors('email')}" data-th-errors="*{email}" class="validation-message"></label>
                 </div>
                 <div>
@@ -28,21 +27,27 @@
                     <label data-th-if="${#fields.hasErrors('password')}" data-th-errors="*{password}" class="validation-message"></label>
                 </div>
 
-                <div>
+                <div >
                     <div>
-                        <button type="submit" class="btn btn-primary btn-block">Sign me Up</button>
+                        <button type="submit" data-th-action="@{/signUp}" method="GET" class="btn btn-dark btn-sm">Sign me Up</button>
                     </div>
                 </div>
 
-                <h2><span class="text-success" data-th-utext="${successMessage}"></span></h2>
+                <h2>
+                <span class="text-success" data-th-utext="${successMessage}">
+                </span>
+                </h2>
 
             </form>
         </div>
     </div>
-    <div class="row">
+    <div>
         <form data-th-action="@{/signIn}" method="get">
-            <button class="btn btn-md btn-warning btn-block" type="Submit">Go To Login Page</button>
+            <button class="btn btn-md btn-info" type="Submit">Go To Login Page</button>
         </form>
+    </div>
+    <div>
+        <p>*password store in database and encrypted</p>
     </div>
 </div>
 </body>

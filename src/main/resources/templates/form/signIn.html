@@ -2,45 +2,44 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Secured  | Login</title>
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap/css/bootstrap-reboot.min.css">
+    <title>Secured | Sign in page</title>
 </head>
 <body>
 
-<div class="container">
+<div>
     <div>
-        <h2>Please login to Secure Website</h2>
+        <p data-th-if="${param.logout != null}">You've been logged out</p>
     </div>
-    <div >
+    <div>
+        <h2>Please enter your access data to Secure Website</h2>
+    </div>
+    <div>
         <form data-th-action="@{/signIn}" method="POST">
-            <div>Username:
-                <input type="text" name="username" />
-            </div>
-            <div>Password:
-                <input type="password" name="password" />
-            </div>
-            <div>
-                <button type="submit" value="Login">Login</button>
-            </div>
 
-            <div align="center" data-th-if="${param.error}">
-                <p style="font-size: 20; color: #FF1C19;">Email or Password invalid, please verify</p>
+            <input type="text" id="email" name="email" data-th-placeholder="Email"/> <br/>
+            <input type="password" data-th-placeholder="Password" id="password" name="password"/> <br/>
+
+            <div data-th-if="${param.error}">
+                <p>Email or Password are invalid, please verify and try again</p>
             </div>
+            <button name="Submit" value="Login" type="Submit"
+                    data-th-text="Login"></button>
             <div>
                 <input type="checkbox" name="remember-me" />
                 <label class="inline">Remember me for 90 days</label>
             </div>
+
+        </form>
+    </div>
+    <div>
+        <h2>Or Sign Up</h2>
+    </div>
+    <div>
+        <form data-th-action="@{/signUp}" method="GET">
+            <button type="submit">Sign Up</button>
         </form>
     </div>
 
-    <div>
-        <button data-th-action="@{/signUp}" method="GET">Sign Up</button>
-    </div>
-
-
-    <div>
-        <p>*password store in database and encrypted</p>
-    </div>
 
 
 </div>

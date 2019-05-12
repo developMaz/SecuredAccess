@@ -5,24 +5,22 @@
     <title>Title</title>
 </head>
 <body>
-<header class="container">
-    <div>
-        <form data-th-href="@{/logout}">
-            <input type="submit" value="Logout" method="GET"/>
-        </form>
-    </div>
-    <div data-th-fragment="logout" class="logout" data-sec-authorize="isAuthenticated()">
-        Logged in user: <span data-security-authentication="principal.username" ></span> |
-        Roles: <span data-security-authentication="principal.authorities"></span>
-    </div>
+<div>
 
-</header>
-<section class="row">
-    <div class="container">
-        <h2>Welcome</h2>
+    <div>
         <h2>Hurray! You're logged successful!</h2>
     </div>
-</section>
+
+    <div>
+        <h2>Now you can easy log out :-)</h2>
+    </div>
+    <div>
+        <form data-th-action="@{/logout}" method="GET">
+            <button type="Submit">Logout</button>
+        </form>
+    </div>
+
+</div>
 
 </body>
 </html>

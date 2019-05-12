@@ -4,6 +4,8 @@ import dev.obsydian.securedaccess.domain.User;
 import dev.obsydian.securedaccess.mapper.UserMapper;
 import dev.obsydian.securedaccess.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -30,14 +32,9 @@ public class WebsiteController {
 
 	@RequestMapping(value = "/signIn", method = RequestMethod.GET)
 	public String login() {
-		return "site/index";
+		return "form/signIn";
 	}
 
-	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String logout(Model model) {
-		model.addAttribute("newUser", new User());
-		return "form/logout";
-	}
 
 	@RequestMapping(value = "/signUp", method = RequestMethod.GET)
 	public ModelAndView signUp(){
@@ -48,7 +45,7 @@ public class WebsiteController {
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/registration", method = RequestMethod.POST)
+	@RequestMapping(value = "/signUp", method = RequestMethod.POST)
 	public ModelAndView registerUser(@Valid User user, BindingResult bindingResult){
 		ModelAndView modelAndView = new ModelAndView();
 		User checkUser = userService.findUser(user.getEmail());
@@ -67,6 +64,20 @@ public class WebsiteController {
 		return modelAndView;
 	}
 
+	@RequestMapping(value = "/admin/home", method = RequestMethod.GET)
+	public ModelAndView home() {
+		ModelAndView modelAndView = new ModelAndView();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		User user = userService.findUser(auth.getName());
+		modelAndView.addObject("userName", "Welcome " + user.getFirstName() + " " + user.getSecondName() + " (" + user.getEmail() + ")");
+		modelAndView.addObject("adminMessage", "Content Available Only for Users with Admin Role");
+		modelAndView.setViewName("admin/home");
+		return modelAndView;
+	}
 
+	@RequestMapping(value = "/site", method = RequestMethod.GET)
+	public String site() {
+		return "site/index";
+	}
 }
 
